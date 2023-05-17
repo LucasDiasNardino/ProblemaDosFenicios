@@ -1,41 +1,38 @@
 public class Aresta {
 
-	private int peso;
-	private Vertice origem;
-	private Vertice destino;
+    private Nodo nodoInicio;
+    private Nodo nodoFinal;
+    private Integer peso;
 
-	public Aresta(Vertice v1, Vertice v2) {
+    public Aresta(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
+        this.nodoInicio = nodoInicio;
+        this.nodoFinal = nodoFinal;
+        this.peso = peso;
+    }
 
-		this.peso = 1;
-		this.origem = v1;
-		this.destino = v2;
+    public Nodo getNodoInicio() {
+        return nodoInicio;
+    }
 
-	}
+    public void setNodoInicio(Nodo nodoInicio) {
+        this.nodoInicio = nodoInicio;
+    }
 
-	public void setPeso(int novoPeso) {
+    public Nodo getNodoFinal() {
+        return nodoFinal;
+    }
 
-		this.peso = novoPeso;
-	}
+    public void setNodoFinal(Nodo nodoFinal) {
+        this.nodoFinal = nodoFinal;
+    }
 
-	public int getPeso() {
+    public Integer getPeso() {
+        return peso;
+    }
 
-		return peso;
-	}
-
-	public void setDestino(Vertice destino) {
-		this.destino = destino;
-	}
-
-	public Vertice getDestino() {
-		return destino;
-	}
-
-	public void setOrigem(Vertice origem) {
-		this.origem = origem;
-	}
-
-	public Vertice getOrigem() {
-		return origem;
-	}
-
-} 
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+    
+    
+}

@@ -1,39 +1,40 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Grafo {
+    
+    private ArrayList<Nodo> nodos;
+    private boolean ponderado;
+    private boolean direcionado;
 
-	private List<Vertice> grafo = new ArrayList<Vertice>();
+    public Grafo(boolean ponderado, boolean direcionado) {
+        this.nodos = new ArrayList<Nodo>();
+        this.ponderado = ponderado;
+        this.direcionado = direcionado;
+    }
 
-	public void setVertices(List<Vertice> vertices) {
+    public Nodo addNodo(String data) {
+        Nodo nodo = new Nodo(data);
+        this.nodos.add(nodo);
+        return nodo;
+    }
 
-		this.grafo.addAll(vertices);
-	}
+    public void addAresta(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
+        if(!this.ponderado){
+            peso = null;
+        }
 
-	public void adicionarVertice(Vertice novoVertice) {
+        nodoInicio.addVertice(nodoFinal, peso);
 
-		this.grafo.add(novoVertice);
-	}
+        if(!this.direcionado){
+            nodoFinal.addVertice(nodoInicio, peso);
+        }
+    }
 
-	public List<Vertice> getVertices() {
+    public void removeVertice(Nodo nodoInicio, Nodo nodoFinal) {
+        nodoInicio.removeVertice(nodoFinal);
 
-		return this.grafo;
-	}
-
-	// Método que retorna o vértice cuja descrição é igual à procurada.
-	public Vertice encontrarVertice(String nome) {
-
-		for (int i = 0; i < this.getVertices().size(); i++) {
-
-			if (nome.equalsIgnoreCase(this.getVertices().get(i).getDescricao())) {
-
-				return this.getVertices().get(i);
-
-			}
-		}
-
-		return null;
-
-	}
-
+        if(!this.direcionado){
+            nodoFinal.removeVertice(nodoInicio);
+        }
+    }
 }
