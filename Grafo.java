@@ -37,4 +37,41 @@ public class Grafo {
             nodoFinal.removeVertice(nodoInicio);
         }
     }
+
+    public void removeNodo(Nodo nodo) {
+        for (Nodo n : this.nodos) {
+            n.removeVertice(nodo);
+        }
+        this.nodos.remove(nodo);
+    }
+
+    //retorna lista de nodos do grafo
+    public ArrayList<Nodo> getNodos() {
+        return nodos;
+    }
+
+    //retorna nodo da direita do nodo passado como parametro
+    public Nodo getNodoDireita(Nodo nodo){
+        int index = this.nodos.indexOf(nodo);
+        if(index == this.nodos.size() - 1){
+            return null;
+        }
+        return this.nodos.get(index + 1);
+    }
+
+    //retorna nodo da esquerda do nodo passado como parametro
+    public Nodo getNodoEsquerda(Nodo nodo){
+        int index = this.nodos.indexOf(nodo);
+        if(index == 0){
+            return null;
+        }
+        return this.nodos.get(index - 1);
+    }
+
+    //imprime nodos do grafo no formato de lista
+    public void imprimeNodos(boolean mostraPeso){
+        for (Nodo nodo : nodos) {
+            nodo.print(mostraPeso);
+        }
+    }
 }

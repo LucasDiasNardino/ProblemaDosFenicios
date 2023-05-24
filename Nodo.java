@@ -10,8 +10,8 @@ public class Nodo {
         this.arestas = new ArrayList<Aresta>();
     }
 
-    public void addVertice(Nodo vFinal, int peso) {
-        this.arestas.add(new Aresta(this, vFinal, peso)); 
+    public void addVertice(Nodo vFinal, int i) {
+        this.arestas.add(new Aresta(this, vFinal, i)); 
     }
 
     public void removeVertice(Nodo vFinal) {
