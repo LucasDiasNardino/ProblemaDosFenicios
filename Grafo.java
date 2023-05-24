@@ -50,25 +50,54 @@ public class Grafo {
         return nodos;
     }
 
-    //retorna nodo da direita do nodo passado como parametro
-    public Nodo getNodoDireita(Nodo nodo){
-        int index = this.nodos.indexOf(nodo);
-        if(index == this.nodos.size() - 1){
-            return null;
-        }
-        return this.nodos.get(index + 1);
-    }
-
-    //retorna nodo da esquerda do nodo passado como parametro
+    //retorna nodo da esquerda 
     public Nodo getNodoEsquerda(Nodo nodo){
         int index = this.nodos.indexOf(nodo);
         if(index == 0){
             return null;
         }
+        //impede que o nodo da esquerda seja um nodo de outra linha
+        if(index % 3 == 0){
+            return null;
+        }
         return this.nodos.get(index - 1);
     }
 
-    //imprime nodos do grafo no formato de lista
+    //retorna nodo da direita 
+    public Nodo getNodoDireita(Nodo nodo){
+        int index = this.nodos.indexOf(nodo);
+        if(index == this.nodos.size() - 1){
+            return null;
+        }
+
+        //impede que o nodo da direita seja um nodo de outra linha
+        if(index % 3 == 2){
+            return null;
+        }
+        return this.nodos.get(index + 1);
+    }
+
+    //retorna nodo de cima
+    public Nodo getNodoCima(Nodo nodo, int colunas){
+        int index = this.nodos.indexOf(nodo);
+        if(index < colunas){
+            return null;
+        }
+        return this.nodos.get(index - colunas);
+    }
+
+    //retorna nodo de baixo
+    public Nodo getNodoBaixo(Nodo nodo, int colunas){
+        int index = this.nodos.indexOf(nodo);
+        if(index >= this.nodos.size() - colunas){
+            return null;
+        }
+        return this.nodos.get(index + colunas);
+    }
+
+
+
+    //imprime nodos do grafo
     public void imprimeNodos(boolean mostraPeso){
         for (Nodo nodo : nodos) {
             nodo.print(mostraPeso);
