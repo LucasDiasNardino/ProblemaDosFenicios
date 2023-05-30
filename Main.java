@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,6 +21,7 @@ public class Main {
 
         //liga nodos adjacentes
         GrafoOps.ligaNodos(grafo, matriz);
-        grafo.imprimeNodos(true);
+
+        grafo.imprimeNodos(false, true);
     }
 }

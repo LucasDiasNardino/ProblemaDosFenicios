@@ -19,7 +19,7 @@ public class Leitor {
             int i = 0;
 
             while((linha = br.readLine()) != null && i < linhas){
-                String[] valores = linha.split("  ");
+                String[] valores = linha.split(" ");
                 for(int j = 0; j < colunas; j++){
                     matriz[i][j] = valores[j];
                 }

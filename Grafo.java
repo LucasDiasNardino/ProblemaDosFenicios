@@ -14,6 +14,10 @@ public class Grafo {
 
     public Nodo addNodo(String data) {
         Nodo nodo = new Nodo(data);
+        //verifica se nodo é caminhavel
+        if(data.equals("*")){
+            nodo.setCaminhavel(false);
+        }
         this.nodos.add(nodo);
         return nodo;
     }
@@ -49,6 +53,7 @@ public class Grafo {
     public ArrayList<Nodo> getNodos() {
         return nodos;
     }
+
 
     //retorna nodo da esquerda 
     public Nodo getNodoEsquerda(Nodo nodo){
@@ -98,9 +103,9 @@ public class Grafo {
 
 
     //imprime nodos do grafo
-    public void imprimeNodos(boolean mostraPeso){
+    public void imprimeNodos(boolean mostraPeso, boolean caminhavel){
         for (Nodo nodo : nodos) {
-            nodo.print(mostraPeso);
+            nodo.print(mostraPeso, caminhavel);
         }
     }
 }
