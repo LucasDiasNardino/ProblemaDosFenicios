@@ -1,10 +1,10 @@
-public class Aresta {
+public class Vertice {
 
     private Nodo nodoInicio;
     private Nodo nodoFinal;
     private Integer peso;
 
-    public Aresta(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
+    public Vertice(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
         this.nodoInicio = nodoInicio;
         this.nodoFinal = nodoFinal;
         this.peso = peso;
@@ -13,7 +13,6 @@ public class Aresta {
     public Nodo getNodoInicio() {
         return nodoInicio;
     }
-
     public void setNodoInicio(Nodo nodoInicio) {
         this.nodoInicio = nodoInicio;
     }
@@ -21,7 +20,6 @@ public class Aresta {
     public Nodo getNodoFinal() {
         return nodoFinal;
     }
-
     public void setNodoFinal(Nodo nodoFinal) {
         this.nodoFinal = nodoFinal;
     }
@@ -29,10 +27,7 @@ public class Aresta {
     public Integer getPeso() {
         return peso;
     }
-
     public void setPeso(Integer peso) {
         this.peso = peso;
     }
-    
-    
 }

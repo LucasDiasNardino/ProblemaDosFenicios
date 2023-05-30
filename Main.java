@@ -6,10 +6,7 @@ public class Main {
         String[][] matriz = Leitor.criaMatriz("matrizTeste.txt");
         // Leitor.printaMatriz(matriz);
         
-        //variavel de linhas da matriz
-        int linhas = matriz.length;
-
-        Grafo grafo = new Grafo(true, false);
+        Grafo grafo = new Grafo();
 
         //cria nodo para cada elemento da matriz
         for(int i = 0; i < matriz.length; i++){

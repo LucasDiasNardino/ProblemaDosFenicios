@@ -2,19 +2,18 @@ import java.util.ArrayList;
 
 public class Nodo {
     private String nome;
-    private ArrayList<Aresta> arestas;
+    private ArrayList<Vertice> arestas;
     private Boolean caminhavel;
     
     public Nodo(String data) {
         this.nome = data;
-        this.arestas = new ArrayList<Aresta>();
+        this.arestas = new ArrayList<Vertice>();
         this.caminhavel = true;
     }
 
     public void addVertice(Nodo vFinal, int i) {
-        this.arestas.add(new Aresta(this, vFinal, i)); 
+        this.arestas.add(new Vertice(this, vFinal, i)); 
     }
-
     public void removeVertice(Nodo vFinal) {
         this.arestas.removeIf(aresta -> aresta.getNodoFinal().equals(vFinal));
     }
@@ -22,33 +21,35 @@ public class Nodo {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String data) {
         this.nome = data;
     }
 
-    public ArrayList<Aresta> getArestas() {
+    public ArrayList<Vertice> getArestas() {
         return arestas;
     }
-
-    public void setArestas(ArrayList<Aresta> arestas) {
+    public void setArestas(ArrayList<Vertice> arestas) {
         this.arestas = arestas;
     }
 
-    //get distancia
+    public Boolean isCaminhavel() {
+        return caminhavel;
+    }
+    public void setCaminhavel(Boolean caminhavel) {
+        this.caminhavel = caminhavel;
+    }
+
     public int getDistancia(){
         return Integer.parseInt(this.nome);
     }
-
-    //set distancia
     public void setDistancia(int distancia){
         this.nome = Integer.toString(distancia);
     }
-
+  
 
     public void print(boolean mostraPeso, boolean caminhavel){
         System.out.print(this.nome + " -> ");
-        for (Aresta aresta : arestas) {
+        for (Vertice aresta : arestas) {
             System.out.print(aresta.getNodoFinal().getNome());
             if(mostraPeso){
                 System.out.print("Peso:" + aresta.getPeso() + " ");
@@ -57,16 +58,8 @@ public class Nodo {
                 System.out.print("Caminhavel:" + aresta.getNodoFinal().isCaminhavel() + " ");
             }
             System.out.print(", ");
+        
         }
         System.out.println();
     }
-
-    public Boolean isCaminhavel() {
-        return caminhavel;
-    }
-
-    public void setCaminhavel(Boolean caminhavel) {
-        this.caminhavel = caminhavel;
-    }
-
 }

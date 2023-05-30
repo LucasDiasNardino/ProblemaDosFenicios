@@ -3,13 +3,9 @@ import java.util.*;
 public class Grafo {
     
     private ArrayList<Nodo> nodos;
-    private boolean ponderado;
-    private boolean direcionado;
 
-    public Grafo(boolean ponderado, boolean direcionado) {
+    public Grafo() {
         this.nodos = new ArrayList<Nodo>();
-        this.ponderado = ponderado;
-        this.direcionado = direcionado;
     }
 
     public Nodo addNodo(String data) {
@@ -22,31 +18,15 @@ public class Grafo {
         return nodo;
     }
 
-    public void addAresta(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
-        if(!this.ponderado){
-            peso = null;
-        }
-
+    public void addVertice(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
         nodoInicio.addVertice(nodoFinal, peso);
-
-        if(!this.direcionado){
-            nodoFinal.addVertice(nodoInicio, peso);
-        }
+        nodoFinal.addVertice(nodoInicio, peso);
+        
     }
 
     public void removeVertice(Nodo nodoInicio, Nodo nodoFinal) {
         nodoInicio.removeVertice(nodoFinal);
-
-        if(!this.direcionado){
-            nodoFinal.removeVertice(nodoInicio);
-        }
-    }
-
-    public void removeNodo(Nodo nodo) {
-        for (Nodo n : this.nodos) {
-            n.removeVertice(nodo);
-        }
-        this.nodos.remove(nodo);
+        nodoFinal.removeVertice(nodoInicio);
     }
 
     //retorna lista de nodos do grafo
@@ -54,10 +34,14 @@ public class Grafo {
         return nodos;
     }
 
+    //retorna indice do nodo
+    public int getIndexNodo(Nodo nodo){
+        return this.nodos.indexOf(nodo);
+    }
 
     //retorna nodo da esquerda 
     public Nodo getNodoEsquerda(Nodo nodo){
-        int index = this.nodos.indexOf(nodo);
+        int index = getIndexNodo(nodo);
         if(index == 0){
             return null;
         }
@@ -70,7 +54,7 @@ public class Grafo {
 
     //retorna nodo da direita 
     public Nodo getNodoDireita(Nodo nodo){
-        int index = this.nodos.indexOf(nodo);
+        int index = getIndexNodo(nodo);
         if(index == this.nodos.size() - 1){
             return null;
         }
@@ -84,7 +68,7 @@ public class Grafo {
 
     //retorna nodo de cima
     public Nodo getNodoCima(Nodo nodo, int colunas){
-        int index = this.nodos.indexOf(nodo);
+        int index = getIndexNodo(nodo);
         if(index < colunas){
             return null;
         }
@@ -93,7 +77,7 @@ public class Grafo {
 
     //retorna nodo de baixo
     public Nodo getNodoBaixo(Nodo nodo, int colunas){
-        int index = this.nodos.indexOf(nodo);
+        int index = getIndexNodo(nodo);
         if(index >= this.nodos.size() - colunas){
             return null;
         }
