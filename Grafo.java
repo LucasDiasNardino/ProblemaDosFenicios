@@ -39,6 +39,16 @@ public class Grafo {
         return this.nodos.indexOf(nodo);
     }
 
+    //busca nodo pelo nome
+    public static Nodo buscaNodo(Grafo grafo, String nome){
+        for (Nodo nodo : grafo.getNodos()) {
+            if(nodo.getNome().equals(nome)){
+                return nodo;
+            }
+        }
+        return null;
+    }    
+    
     //retorna nodo da esquerda 
     public Nodo getNodoEsquerda(Nodo nodo){
         int index = getIndexNodo(nodo);

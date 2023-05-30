@@ -2,20 +2,23 @@ import java.util.ArrayList;
 
 public class Nodo {
     private String nome;
-    private ArrayList<Vertice> arestas;
+    private ArrayList<Vertice> vertices;
     private Boolean caminhavel;
-    
+    private Boolean visitado;
+    private int distancia;
     public Nodo(String data) {
         this.nome = data;
-        this.arestas = new ArrayList<Vertice>();
+        this.vertices = new ArrayList<Vertice>();
         this.caminhavel = true;
+        this.visitado = false;
+        int distancia = 0;
     }
 
     public void addVertice(Nodo vFinal, int i) {
-        this.arestas.add(new Vertice(this, vFinal, i)); 
+        this.vertices.add(new Vertice(this, vFinal, i)); 
     }
     public void removeVertice(Nodo vFinal) {
-        this.arestas.removeIf(aresta -> aresta.getNodoFinal().equals(vFinal));
+        this.vertices.removeIf(aresta -> aresta.getNodoFinal().equals(vFinal));
     }
 
     public String getNome() {
@@ -25,11 +28,11 @@ public class Nodo {
         this.nome = data;
     }
 
-    public ArrayList<Vertice> getArestas() {
-        return arestas;
+    public ArrayList<Vertice> getVertices() {
+        return vertices;
     }
-    public void setArestas(ArrayList<Vertice> arestas) {
-        this.arestas = arestas;
+    public void setVertices(ArrayList<Vertice> arestas) {
+        this.vertices = arestas;
     }
 
     public Boolean isCaminhavel() {
@@ -39,17 +42,28 @@ public class Nodo {
         this.caminhavel = caminhavel;
     }
 
+    public Boolean isVisitado() {
+        return visitado;
+    }
+    public void setVisitado(Boolean visitado) {
+        this.visitado = visitado;
+    }
+
     public int getDistancia(){
-        return Integer.parseInt(this.nome);
+        return this.distancia;
     }
     public void setDistancia(int distancia){
-        this.nome = Integer.toString(distancia);
+        this.distancia = distancia;
     }
   
+    //altera nodo anterior para o nodo passado como parametro
+    public void setNodoAnterior(Nodo nodo){
+        this.vertices.get(0).setNodoFinal(nodo);
+    }
 
     public void print(boolean mostraPeso, boolean caminhavel){
         System.out.print(this.nome + " -> ");
-        for (Vertice aresta : arestas) {
+        for (Vertice aresta : vertices) {
             System.out.print(aresta.getNodoFinal().getNome());
             if(mostraPeso){
                 System.out.print("Peso:" + aresta.getPeso() + " ");
