@@ -26,52 +26,40 @@ public class GrafoOps {
                 }
             }
         }
-    }
+    } 
+    //busca em largura para encontrar menor caminho entre dois nodos e retorna o valor do caminho
+    public static void bfs(Grafo grafo, Nodo inicio, Nodo fim){
+        Queue<Nodo> fila = new LinkedList<Nodo>();
+        ArrayList<Nodo> visitados = new ArrayList<Nodo>();
+        ArrayList<Nodo> caminho = new ArrayList<Nodo>();
+        int distancia = 0;
 
-    //implementa algoritmo de dijkstra
-    public static void dijkstra(Grafo grafo, Nodo nodoInicial){
-        //inicializa nodos
-        for(Nodo nodo : grafo.getNodos()){
-            nodo.setDistancia(Integer.MAX_VALUE);
-            nodo.setVisitado(false);
-        }
+        fila.add(inicio);
+        visitados.add(inicio);
 
-        //inicializa nodo inicial
-        nodoInicial.setDistancia(0);
-        nodoInicial.setVisitado(true);
-
-        //inicializa fila de prioridade
-        PriorityQueue<Nodo> fila = new PriorityQueue<Nodo>();
-        fila.add(nodoInicial);
-
-        //enquanto fila nao estiver vazia
         while(!fila.isEmpty()){
-            //pega nodo com menor distancia
-            Nodo nodoAtual = fila.poll();
-
-            //para cada nodo adjacente
-            for(Vertice vertice : nodoAtual.getVertices()){
-                Nodo nodoAdjacente = vertice.getNodoFinal();
-                int peso = vertice.getPeso();
-
-                //se nodo adjacente nao foi visitado
-                if(!nodoAdjacente.isVisitado()){
-                    //calcula nova distancia
-                    int novaDistancia = nodoAtual.getDistancia() + peso;
-
-                    //se nova distancia for menor que distancia atual
-                    if(novaDistancia < nodoAdjacente.getDistancia()){
-                        //atualiza distancia
-                        nodoAdjacente.setDistancia(novaDistancia);
-                        nodoAdjacente.setNodoAnterior(nodoAtual);
-
-                        //adiciona nodo na fila
-                        fila.add(nodoAdjacente);
-                    }
+            Nodo nodo = fila.remove();
+            if(nodo.equals(fim)){
+                caminho.add(nodo);
+                while(nodo.getNodoPai() != null){
+                    caminho.add(nodo.getNodoPai());
+                    nodo = nodo.getNodoPai();
+                }
+                break;
+            }
+            for(Vertice vertice : nodo.getVertices()){
+                if(!visitados.contains(vertice.getNodoFinal())){
+                    vertice.getNodoFinal().setNodoPai(nodo);
+                    fila.add(vertice.getNodoFinal());
+                    visitados.add(vertice.getNodoFinal());
+                    distancia++;
                 }
             }
-            //marca nodo atual como visitado
-            nodoAtual.setVisitado(true);
+        }
+
+        //printa caminho
+        for(int i = visitados.size()-1; i >= 0; i--){
+            System.out.print(visitados.get(i).getNome() + " ");
         }
     }
 }

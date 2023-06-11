@@ -95,6 +95,15 @@ public class Grafo {
     }
 
 
+    //procura nodo por nome
+    public Nodo procuraNodo(String nome){
+        for (Nodo nodo : this.nodos) {
+            if(nodo.getNome().equals(nome)){
+                return nodo;
+            }
+        }
+        return null;
+    }
 
     //imprime nodos do grafo
     public void imprimeNodos(boolean mostraPeso, boolean caminhavel){

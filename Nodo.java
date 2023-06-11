@@ -6,12 +6,20 @@ public class Nodo {
     private Boolean caminhavel;
     private Boolean visitado;
     private int distancia;
+
     public Nodo(String data) {
         this.nome = data;
         this.vertices = new ArrayList<Vertice>();
         this.caminhavel = true;
         this.visitado = false;
-        int distancia = 0;
+    }
+
+    //nodo pai
+    public Nodo getNodoPai(){
+        return this.vertices.get(0).getNodoFinal();
+    }
+    public void setNodoPai(Nodo nodo){
+        this.vertices.get(0).setNodoFinal(nodo);
     }
 
     public void addVertice(Nodo vFinal, int i) {

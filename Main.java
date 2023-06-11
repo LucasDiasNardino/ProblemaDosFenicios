@@ -27,7 +27,6 @@ public class Main {
 
         //liga nodos adjacentes
         GrafoOps.ligaNodos(grafo, matriz);
-        System.out.println("Imprimir nodos?\n");
         
         grafo.imprimeNodos(false, false);
         
@@ -36,7 +35,10 @@ public class Main {
         /*
          *  ENCONTRA CAMINHOS
          */
-        GrafoOps.dijkstra(grafo, grafo.buscaNodo(grafo, "1"));
-        Leitor.printaMatriz(matriz);
+        Nodo inicio = grafo.procuraNodo("1");
+        Nodo fim = grafo.procuraNodo("2");
+
+        GrafoOps.bfs(grafo, inicio, fim);
+    
     }
 }
