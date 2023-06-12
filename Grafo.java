@@ -8,14 +8,13 @@ public class Grafo {
         this.nodos = new ArrayList<Nodo>();
     }
 
-    public Nodo addNodo(String data) {
-        Nodo nodo = new Nodo(data);
-        //verifica se nodo é caminhavel
-        if(data.equals("*")){
+    //adiciona nodo ao grafo
+    public void addNodo(String nome) {
+        Nodo nodo = new Nodo(nome);
+        this.nodos.add(nodo);
+        if(nome.equals("*")){
             nodo.setCaminhavel(false);
         }
-        this.nodos.add(nodo);
-        return nodo;
     }
 
     public void addVertice(Nodo nodoInicio, Nodo nodoFinal, Integer peso) {
@@ -107,6 +106,7 @@ public class Grafo {
 
     //imprime nodos do grafo
     public void imprimeNodos(boolean mostraPeso, boolean caminhavel){
+        System.out.println("\nNodos:");
         for (Nodo nodo : nodos) {
             nodo.print(mostraPeso, caminhavel);
         }

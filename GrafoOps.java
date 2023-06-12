@@ -2,64 +2,58 @@ import java.util.*;
 
 public class GrafoOps {
 
-    //liga nodos adjacentes
-    public static void ligaNodos(Grafo grafo, String[][] matriz){
-        for(Nodo nodo : grafo.getNodos()){
-            //liga nodo esquerda
-            if(nodo.isCaminhavel()){
-                if(grafo.getNodoEsquerda(nodo) != null && grafo.getNodoEsquerda(nodo).isCaminhavel()){
-                    nodo.addVertice(grafo.getNodoEsquerda(nodo), 1);
-                }
-                //liga direita
-                if(grafo.getNodoDireita(nodo) != null && grafo.getNodoDireita(nodo).isCaminhavel()){
-                    nodo.addVertice(grafo.getNodoDireita(nodo), 1);
-                }
 
-                //liga acima
-                if(grafo.getNodoCima(nodo, matriz.length) != null && grafo.getNodoCima(nodo, matriz.length).isCaminhavel()){
-                    nodo.addVertice(grafo.getNodoCima(nodo, matriz.length), 1);
-                }
+    //liga os nodos vizinhos da esquerda, direita e de cima e de baixo sem pular linhas
+    public static void ligaNodos(Grafo grafo, String[][] matriz) {
+        int colunas = matriz[0].length;
+        for (Nodo nodo : grafo.getNodos()) {
+            Nodo nodoEsquerda = grafo.getNodoEsquerda(nodo);
+            Nodo nodoDireita = grafo.getNodoDireita(nodo);
+            Nodo nodoCima = grafo.getNodoCima(nodo, colunas);
+            Nodo nodoBaixo = grafo.getNodoBaixo(nodo, colunas);
 
-                //liga baixo
-                if(grafo.getNodoBaixo(nodo, matriz.length) != null && grafo.getNodoBaixo(nodo, matriz.length).isCaminhavel()){
-                    nodo.addVertice(grafo.getNodoBaixo(nodo, matriz.length), 1);
-                }
+            if (nodoEsquerda != null && nodoEsquerda.isCaminhavel()) {
+                nodo.addVertice(nodoEsquerda, 1);
+            }
+            if (nodoDireita != null && nodoDireita.isCaminhavel()) {
+                nodo.addVertice(nodoDireita, 1);
+            }
+            if (nodoCima != null && nodoCima.isCaminhavel()) {
+                nodo.addVertice(nodoCima, 1);
+            }
+            if (nodoBaixo != null && nodoBaixo.isCaminhavel()) {
+                nodo.addVertice(nodoBaixo, 1);
             }
         }
-    } 
-    //busca em largura para encontrar menor caminho entre dois nodos e retorna o valor do caminho
-    public static void bfs(Grafo grafo, Nodo inicio, Nodo fim){
+    }
+
+
+    //busca em largura para encontrar o caminho mais curto entre dois nodos sem pular linhas e passar por nodos não caminháveis
+    public static void bfs(Grafo grafo, Nodo inicio, Nodo fim) {
         Queue<Nodo> fila = new LinkedList<Nodo>();
-        ArrayList<Nodo> visitados = new ArrayList<Nodo>();
-        ArrayList<Nodo> caminho = new ArrayList<Nodo>();
-        int distancia = 0;
-
         fila.add(inicio);
-        visitados.add(inicio);
+        inicio.setVisitado(true);
+        inicio.setDistancia(0);
 
-        while(!fila.isEmpty()){
+        while (!fila.isEmpty()) {
             Nodo nodo = fila.remove();
-            if(nodo.equals(fim)){
-                caminho.add(nodo);
-                while(nodo.getNodoPai() != null){
-                    caminho.add(nodo.getNodoPai());
-                    nodo = nodo.getNodoPai();
-                }
-                break;
-            }
-            for(Vertice vertice : nodo.getVertices()){
-                if(!visitados.contains(vertice.getNodoFinal())){
-                    vertice.getNodoFinal().setNodoPai(nodo);
-                    fila.add(vertice.getNodoFinal());
-                    visitados.add(vertice.getNodoFinal());
-                    distancia++;
+            for (Vertice vertice : nodo.getVertices()) {
+                Nodo nodoFinal = vertice.getNodoFinal();
+                if (!nodoFinal.isVisitado() && nodoFinal.isCaminhavel()) {
+                    nodoFinal.setVisitado(true);
+                    nodoFinal.setDistancia(nodo.getDistancia() + 1);
+                    nodoFinal.setNodoPai(nodo);
+                    fila.add(nodoFinal);
                 }
             }
         }
 
-        //printa caminho
-        for(int i = visitados.size()-1; i >= 0; i--){
-            System.out.print(visitados.get(i).getNome() + " ");
+        //imprime caminho
+        Nodo nodo = fim;
+        while (nodo != null) {
+            System.out.print(nodo.getNome() + " ");
+            nodo = nodo.getNodoPai();
         }
+        System.out.println();
     }
 }
