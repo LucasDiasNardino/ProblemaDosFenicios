@@ -27,25 +27,42 @@ public class GrafoOps {
         }
     }
 
-
     //busca em largura para encontrar o caminho mais curto entre dois nodos sem pular linhas e passar por nodos não caminháveis
     public static void bfs(Grafo grafo, Nodo inicio, Nodo fim) {
         Queue<Nodo> fila = new LinkedList<Nodo>();
-        fila.add(inicio);
         inicio.setVisitado(true);
-        inicio.setDistancia(0);
+        fila.add(inicio);
+        //inicializa dicionario para armazenar distancia de cada nodo em relacao ao nodo inicial
+        HashMap<Nodo, Integer> distancias = new HashMap<Nodo, Integer>();
+        distancias.put(inicio, 0);
 
-        while (!fila.isEmpty()) {
-            Nodo nodo = fila.remove();
-            for (Vertice vertice : nodo.getVertices()) {
-                Nodo nodoFinal = vertice.getNodoFinal();
-                if (!nodoFinal.isVisitado() && nodoFinal.isCaminhavel()) {
-                    nodoFinal.setVisitado(true);
-                    nodoFinal.setDistancia(nodo.getDistancia() + 1);
-                    nodoFinal.setNodoPai(nodo);
-                    fila.add(nodoFinal);
+        //enquanto a fila nao estiver vazia
+        while(!fila.isEmpty()){
+            //retira proximo nodo da fila
+            Nodo nodoAtual = fila.remove();
+
+            //verifica se o nodo atual eh o nodo final
+            if(nodoAtual.equals(fim)){
+                System.out.println("Caminho encontrado!");
+                System.out.println("Distancia: " + distancias.get(nodoAtual));
+                return;
+            }
+
+            //para cada nodo vizinho do nodo atual
+            for(Vertice vertice : nodoAtual.getVertices()){
+                Nodo nodoVizinho = vertice.getNodoFinal();
+                //se o nodo vizinho nao foi visitado
+                if(!nodoVizinho.isVisitado()){
+                    //marca como visitado
+                    nodoVizinho.setVisitado(true);
+                    //adiciona na fila
+                    fila.add(nodoVizinho);
+                    //adiciona no dicionario de distancias
+                    distancias.put(nodoVizinho, distancias.get(nodoAtual) + 1);
                 }
             }
         }
+        //se a fila ficar vazia, nao existe caminho entre os nodos
+        System.out.println("Nao existe caminho entre os nodos");
     }
 }
