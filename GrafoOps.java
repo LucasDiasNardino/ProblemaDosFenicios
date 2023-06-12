@@ -47,13 +47,5 @@ public class GrafoOps {
                 }
             }
         }
-
-        //imprime caminho
-        Nodo nodo = fim;
-        while (nodo != null) {
-            System.out.print(nodo.getNome() + " ");
-            nodo = nodo.getNodoPai();
-        }
-        System.out.println();
     }
 }
