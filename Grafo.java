@@ -12,7 +12,7 @@ public class Grafo {
     public void addNodo(String nome) {
         Nodo nodo = new Nodo(nome);
         this.nodos.add(nodo);
-        if(nome.equals("*")){
+        if(nodo.getNome().equals("*")){
             nodo.setCaminhavel(false);
         }
     }

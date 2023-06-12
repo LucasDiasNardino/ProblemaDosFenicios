@@ -1,3 +1,4 @@
+import java.net.SocketPermission;
 import java.util.*;
 
 public class Main {
@@ -20,15 +21,16 @@ public class Main {
         //cria nodo para cada elemento da matriz
         for(int i = 0; i < matriz.length; i++){
             for(int j = 0; j < matriz[0].length; j++){
-                grafo.addNodo(matriz[i][j]);
-
+                String nodoat = matriz[i][j];
+                // if( !nodoat.equals("*") ){
+                grafo.addNodo(nodoat);
             }
         }
 
         //liga nodos adjacentes
         GrafoOps.ligaNodos(grafo, matriz);
         
-        grafo.imprimeNodos(false, false);
+       grafo.imprimeNodos(false, false);
         
         
 
@@ -37,6 +39,12 @@ public class Main {
          */
         Nodo inicio = grafo.procuraNodo("1");
         Nodo fim = grafo.procuraNodo("2");
+
+
+        // //itera pelos nodos e retorna
+        // for (Nodo nodo : grafo.getNodos()) {
+        //     System.out.println(nodo.getNome());
+        // }
 
         GrafoOps.bfs(grafo, inicio, fim);
     
