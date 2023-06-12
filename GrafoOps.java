@@ -7,10 +7,11 @@ public class GrafoOps {
     public static void ligaNodos(Grafo grafo, String[][] matriz) {
         int colunas = matriz[0].length;
         for (Nodo nodo : grafo.getNodos()) {
-            Nodo nodoEsquerda = grafo.getNodoEsquerda(nodo);
-            Nodo nodoDireita = grafo.getNodoDireita(nodo);
+            Nodo nodoEsquerda = grafo.getNodoEsquerda(nodo, colunas);
+            Nodo nodoDireita = grafo.getNodoDireita(nodo, colunas);
             Nodo nodoCima = grafo.getNodoCima(nodo, colunas);
             Nodo nodoBaixo = grafo.getNodoBaixo(nodo, colunas);
+
 
             if (nodoEsquerda != null && nodoEsquerda.isCaminhavel()) {
                 nodo.addVertice(nodoEsquerda, 1);
