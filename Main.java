@@ -10,7 +10,7 @@ public class Main {
          * CONSTRUÇÃO DO GRAFO
          */
 
-        List<List<String>> matrizList = Leitor.criaMatriz("casos\\caso0.txt");
+        List<List<String>> matrizList = Leitor.criaMatriz("casos\\caso1.txt");
         String[][] matriz = Leitor.converterParaMatrizDeVetores(matrizList);
 
         //Leitor.printaMatriz(matriz);

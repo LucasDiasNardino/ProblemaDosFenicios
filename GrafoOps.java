@@ -67,7 +67,6 @@ public class GrafoOps {
             // verifica se o nodo atual eh o nodo final
             if (nodoAtual.equals(fim)) {
                 System.out.println("Caminho encontrado!");
-                System.out.println("Distancia: " + distancias.get(nodoAtual));
                 distancias.get(nodoAtual);
                 //define todos os nodos como não visitados
                 for (Nodo nodo : grafo.getNodos()) {
@@ -115,7 +114,11 @@ public class GrafoOps {
         if(fim.getNome().equals("9")){
             stop = true;
         }
-
+        //define todos os nodos como não visitados
+        for (Nodo nodo : grafo.getNodos()) {
+            nodo.setVisitado(false);
+        }
+        
         int caminho = bfs(grafo, inicio, fim);
 
         if (caminho != 0) {

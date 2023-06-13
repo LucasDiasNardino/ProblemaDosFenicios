@@ -103,6 +103,13 @@ public class Grafo {
         return null;
     }
 
+    //define todos os nodos como não visitados
+    public void resetVisitados(Grafo grafo){
+        for (Nodo nodo : grafo.getNodos()) {
+            nodo.setVisitado(false);
+        }
+    }
+
     //imprime nodos do grafo
     public void imprimeNodos(boolean mostraPeso, boolean caminhavel){
         System.out.println("\nNodos:");
