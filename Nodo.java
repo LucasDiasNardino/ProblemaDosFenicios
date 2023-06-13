@@ -1,47 +1,86 @@
 import java.util.ArrayList;
 
 public class Nodo {
+    private String nome;
+    private ArrayList<Vertice> vertices;
+    private Boolean caminhavel;
+    private Boolean visitado;
+    private int distancia;
 
-    private String data;
-    private ArrayList<Aresta> arestas;
-    
     public Nodo(String data) {
-        this.data = data;
-        this.arestas = new ArrayList<Aresta>();
+        this.nome = data;
+        this.vertices = new ArrayList<Vertice>();
+        this.caminhavel = true;
+        this.visitado = false;
     }
 
-    public void addVertice(Nodo vFinal, int peso) {
-        this.arestas.add(new Aresta(this, vFinal, peso)); 
+    //nodo pai
+    public Nodo getNodoPai(){
+        return this.vertices.get(0).getNodoFinal();
+    }
+    public void setNodoPai(Nodo nodo){
+        this.vertices.get(0).setNodoFinal(nodo);
     }
 
+    public void addVertice(Nodo vFinal, int i) {
+        this.vertices.add(new Vertice(this, vFinal, i)); 
+    }
     public void removeVertice(Nodo vFinal) {
-        this.arestas.removeIf(aresta -> aresta.getNodoFinal().equals(vFinal));
+        this.vertices.removeIf(aresta -> aresta.getNodoFinal().equals(vFinal));
     }
 
-    public String getData() {
-        return data;
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String data) {
+        this.nome = data;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public ArrayList<Vertice> getVertices() {
+        return vertices;
+    }
+    public void setVertices(ArrayList<Vertice> arestas) {
+        this.vertices = arestas;
     }
 
-    public ArrayList<Aresta> getArestas() {
-        return arestas;
+    public Boolean isCaminhavel() {
+        return caminhavel;
+    }
+    public void setCaminhavel(Boolean caminhavel) {
+        this.caminhavel = caminhavel;
     }
 
-    public void setArestas(ArrayList<Aresta> arestas) {
-        this.arestas = arestas;
+    public Boolean isVisitado() {
+        return visitado;
+    }
+    public void setVisitado(Boolean visitado) {
+        this.visitado = visitado;
     }
 
-    public void print(boolean mostraPeso){
-        System.out.print(this.data + " -> ");
-        for (Aresta aresta : arestas) {
-            System.out.print(aresta.getNodoFinal().getData());
+    public int getDistancia(){
+        return this.distancia;
+    }
+    public void setDistancia(int distancia){
+        this.distancia = distancia;
+    }
+  
+    //altera nodo anterior para o nodo passado como parametro
+    public void setNodoAnterior(Nodo nodo){
+        this.vertices.get(0).setNodoFinal(nodo);
+    }
+
+    public void print(boolean mostraPeso, boolean caminhavel){
+        System.out.print(this.nome + " -> ");
+        for (Vertice aresta : vertices) {
+            System.out.print(aresta.getNodoFinal().getNome());
             if(mostraPeso){
-                System.out.print(" (" + aresta.getPeso() + ")");
+                System.out.print("Peso:" + aresta.getPeso() + " ");
+            }
+            else if(caminhavel){
+                System.out.print("Caminhavel:" + aresta.getNodoFinal().isCaminhavel() + " ");
             }
             System.out.print(", ");
+        
         }
         System.out.println();
     }
