@@ -36,11 +36,12 @@ public class Main {
         
         Integer menorCaminho = 0;
 
-        Nodo nodo1 = Grafo.buscaNodo(grafo, "1");
-        Nodo nodo2 = Grafo.buscaNodo(grafo, "2");
+        Nodo primeiroPorto = Grafo.buscaNodo(grafo, "1");
+        Nodo segundoPorto = Grafo.buscaNodo(grafo, "2");
 
-        menorCaminho = GrafoOps.menorCaminho(grafo, nodo1, nodo2, false, menorCaminho);
+        menorCaminho = GrafoOps.menorCaminho(grafo, primeiroPorto, segundoPorto, false, menorCaminho);
 
-        System.out.println("Menor caminho: " + menorCaminho);
+        System.out.println("Menor caminho ida: " + menorCaminho);
+        System.out.println("Menor caminho ida e volta: " + menorCaminho*2);
     }
 }
