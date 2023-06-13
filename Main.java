@@ -28,20 +28,19 @@ public class Main {
         // liga nodos adjacentes
         GrafoOps.ligaNodos(grafo, matriz);
 
-        grafo.imprimeNodos(false, false);
+        //grafo.imprimeNodos(false, false);
 
         /*
          * ENCONTRA CAMINHOS
          */
-        Nodo inicio = grafo.procuraNodo("1");
-        Nodo fim = grafo.procuraNodo("2");
+        
+        Integer menorCaminho = 0;
 
-        // //itera pelos nodos e retorna
-        // for (Nodo nodo : grafo.getNodos()) {
-        // System.out.println(nodo.getNome());
-        // }
+        Nodo nodo1 = Grafo.buscaNodo(grafo, "1");
+        Nodo nodo2 = Grafo.buscaNodo(grafo, "2");
 
-        GrafoOps.bfs(grafo, inicio, fim);
+        menorCaminho = GrafoOps.menorCaminho(grafo, nodo1, nodo2, false, menorCaminho);
 
+        System.out.println("Menor caminho: " + menorCaminho);
     }
 }
