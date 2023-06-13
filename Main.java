@@ -10,7 +10,7 @@ public class Main {
          * CONSTRUÇÃO DO GRAFO
          */
 
-        List<List<String>> matrizList = Leitor.criaMatriz("casos\\caso2.txt");
+        List<List<String>> matrizList = Leitor.criaMatriz("casos\\caso0.txt");
         String[][] matriz = Leitor.converterParaMatrizDeVetores(matrizList);
 
         //Leitor.printaMatriz(matriz);
@@ -42,7 +42,7 @@ public class Main {
 
         menorCaminho = GrafoOps.menorCaminho(grafo, primeiroPorto, segundoPorto, false, menorCaminho);
 
-        System.out.println("Menor caminho ida: " + menorCaminho);
-        System.out.println("Menor caminho ida e volta: " + menorCaminho*2);
+        System.out.println("Menor caminho total: " + menorCaminho);
+
     }
 }

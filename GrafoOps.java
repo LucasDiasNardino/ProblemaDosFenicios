@@ -98,6 +98,13 @@ public class GrafoOps {
     public static int menorCaminho(Grafo grafo, Nodo inicio, Nodo fim, Boolean stop, int menorCaminho) {
 
         if (stop) {
+            //define todos os nodos como não visitados
+            for (Nodo nodo : grafo.getNodos()) {
+                nodo.setVisitado(false);
+            }
+
+            Nodo origem = Grafo.buscaNodo(grafo, Integer.toString(1));
+            menorCaminho += bfs(grafo, inicio, origem);
             return menorCaminho;
         }
         
