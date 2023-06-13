@@ -101,7 +101,7 @@ public class GrafoOps {
 
         Nodo prox = Grafo.buscaNodo(grafo, Integer.toString(nomeFim + 1));
 
-        if(prox.getNome().equals("3")){
+        if(fim.getNome().equals("3")){
             stop = true;
         }
 
