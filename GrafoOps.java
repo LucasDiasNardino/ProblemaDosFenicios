@@ -69,6 +69,10 @@ public class GrafoOps {
                 System.out.println("Caminho encontrado!");
                 System.out.println("Distancia: " + distancias.get(nodoAtual));
                 distancias.get(nodoAtual);
+                //define todos os nodos como não visitados
+                for (Nodo nodo : grafo.getNodos()) {
+                    nodo.setVisitado(false);
+                }
                 return distancias.get(nodoAtual);
             }
 
@@ -96,12 +100,12 @@ public class GrafoOps {
         if (stop) {
             return menorCaminho;
         }
-
+        
         Integer nomeFim = Integer.parseInt(fim.getNome());
 
         Nodo prox = Grafo.buscaNodo(grafo, Integer.toString(nomeFim + 1));
 
-        if(fim.getNome().equals("3")){
+        if(fim.getNome().equals("9")){
             stop = true;
         }
 
@@ -109,8 +113,10 @@ public class GrafoOps {
 
         if (caminho != 0) {
             menorCaminho += caminho;
+            System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
             return caminho = menorCaminho(grafo, fim, prox, stop, menorCaminho);
         } else {
+            System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
             return caminho = menorCaminho(grafo, inicio, prox, stop, menorCaminho);
         }
     }

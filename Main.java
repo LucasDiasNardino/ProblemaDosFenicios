@@ -10,9 +10,10 @@ public class Main {
          * CONSTRUÇÃO DO GRAFO
          */
 
-        String[][] matriz = Leitor.criaMatriz("matrizTeste.txt");
+        List<List<String>> matrizList = Leitor.criaMatriz("casos\\caso2.txt");
+        String[][] matriz = Leitor.converterParaMatrizDeVetores(matrizList);
 
-        Leitor.printaMatriz(matriz);
+        //Leitor.printaMatriz(matriz);
 
         Grafo grafo = new Grafo();
 
