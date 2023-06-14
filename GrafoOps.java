@@ -66,7 +66,7 @@ public class GrafoOps {
 
             // verifica se o nodo atual eh o nodo final
             if (nodoAtual.equals(fim)) {
-                System.out.println("Caminho encontrado!");
+                //System.out.println("Caminho encontrado!");
                 distancias.get(nodoAtual);
                 //define todos os nodos como não visitados
                 grafo.resetVisitados(grafo);
@@ -88,7 +88,7 @@ public class GrafoOps {
             }
         }
         // se a fila ficar vazia, nao existe caminho entre os nodos
-        System.out.println("Nao existe caminho entre os nodos");
+        //System.out.println("Nao existe caminho entre os nodos");
         return 0;
     }
 
@@ -114,10 +114,10 @@ public class GrafoOps {
 
         if (caminho != 0) {
             menorCaminho += caminho;
-            System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
+            //System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
             return caminho = menorCaminho(grafo, fim, prox, stop, menorCaminho);
         } else {
-            System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
+            //System.out.println("Nodo " + inicio.getNome() + " ate nodo " + fim.getNome() + " = " + caminho);
             return caminho = menorCaminho(grafo, inicio, prox, stop, menorCaminho);
         }
     }
