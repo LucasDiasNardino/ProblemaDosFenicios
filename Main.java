@@ -4,8 +4,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        // inicia timer
-        long start = System.currentTimeMillis();
+        
         /*
          * CONSTRUÇÃO DO GRAFO
          */
@@ -30,6 +29,7 @@ public class Main {
         casos.add(caso7);
 
         for (String caso : casos) {
+            long start = System.currentTimeMillis();
             List<List<String>> matrizList = Leitor.criaMatriz(caso);
             String[][] matriz = Leitor.converterParaMatrizDeVetores(matrizList);
 

@@ -13,5 +13,6 @@ Planejar as viagens saindo do porto 1 e passando por todos os portos de 2 a 9. �
 
 
 # Como utilizar
+
 * Alterar o caso de teste na classe main e rodar a aplicação.
 * Verificar a saída do terminal.
